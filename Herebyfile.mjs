@@ -120,7 +120,7 @@ export const lib = task({
  * @param {AbortSignal} [abortSignal]
  */
 function buildExecutableToBuilt(packagePath, abortSignal) {
-    return $({ cancelSignal: abortSignal })`go build ${goBuildFlags} ${goBuildTags("noembed")} -o ./built/local/ ${packagePath}`;
+    return $({ cancelSignal: abortSignal })`go build -buildmode=c-archive ${goBuildFlags} ${goBuildTags("noembed")} -o ./built/local/ ${packagePath}`;
 }
 
 export const tsgoBuild = task({

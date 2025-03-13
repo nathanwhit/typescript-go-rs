@@ -188,5 +188,8 @@ custom-gcl.hash
 
 /built
 
+/tsgo-rs/target
+/target
+
 # macOS Finder metadata
 .DS_Store
