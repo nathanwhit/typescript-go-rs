@@ -173,7 +173,7 @@ pub fn get_diagnostics<T: CompilerHost + 'static>(
     host: T,
     config_path: &Path,
     roots: Vec<PathBuf>,
-) {
+) -> Vec<Diagnostic> {
     let program = unsafe {
         bindings::NewProgram(program_options {
             host: compiler_host {
@@ -205,6 +205,5 @@ pub fn get_diagnostics<T: CompilerHost + 'static>(
     let diagnostics = unsafe { bindings::GetSyntacticDiagnostics(program, 0) };
     let diagnostics: GoArray<bindings::diagnostic> = diagnostics.into();
 
-    let diagnostics = Vec::<Diagnostic>::from_go(diagnostics);
-    eprintln!("diagnostics: {diagnostics:#?}");
+    Vec::<Diagnostic>::from_go(diagnostics)
 }
